@@ -1,0 +1,158 @@
+{
+    "users": [
+        {
+            "username": "user1",
+            "password": "user1"
+        },
+        {
+            "username": "user2",
+            "password": "user2"
+        }
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "title": "Học React từ cơ bản đến nâng cao",
+            "author": "Nguyễn Văn A",
+            "content": "Trong bài viết này, chúng ta sẽ tìm hiểu cách học React từ cơ bản đến nâng cao. React là một thư viện JavaScript phổ biến để xây dựng giao diện người dùng...",
+            "date": "2025-03-10",
+            "tags": [
+                "React",
+                "JavaScript",
+                "Web Development"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Cập nhật mới nhất của React 18",
+            "author": "Trần Thị B",
+            "content": "React 18 đã ra mắt với nhiều tính năng mới. Trong bài viết này, chúng ta sẽ cùng điểm qua các tính năng nổi bật của phiên bản React 18...",
+            "date": "2025-03-09",
+            "tags": [
+                "React",
+                "React 18",
+                "Cập nhật"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Cách tối ưu hiệu suất trong React",
+            "author": "Lê Minh C",
+            "content": "Trong bài viết này, chúng ta sẽ cùng khám phá các kỹ thuật tối ưu hiệu suất trong React, bao gồm cách sử dụng React.memo, useMemo, useCallback...",
+            "date": "2025-03-08",
+            "tags": [
+                "React",
+                "Performance",
+                "Optimization"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Giới thiệu về React Hooks",
+            "author": "Phạm Quang D",
+            "content": "React Hooks là một tính năng mạnh mẽ giúp bạn làm việc với state và lifecycle methods mà không cần phải viết class. Bài viết này sẽ giải thích cách sử dụng chúng...",
+            "date": "2025-03-07",
+            "tags": [
+                "React",
+                "Hooks",
+                "JavaScript"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Làm thế nào để xây dựng một ứng dụng đơn giản với React?",
+            "author": "Nguyễn Văn E",
+            "content": "Nếu bạn mới bắt đầu học React, bài viết này sẽ hướng dẫn bạn từng bước cách xây dựng một ứng dụng đơn giản sử dụng React và JSX...",
+            "date": "2025-03-06",
+            "tags": [
+                "React",
+                "Beginner",
+                "JavaScript"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Sử dụng Redux trong ứng dụng React",
+            "author": "Trần Thị F",
+            "content": "Redux là một thư viện quản lý state rất mạnh mẽ khi kết hợp với React. Bài viết này sẽ giới thiệu cách sử dụng Redux trong ứng dụng React...",
+            "date": "2025-03-05",
+            "tags": [
+                "React",
+                "Redux",
+                "State Management"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Quản lý route trong React với React Router",
+            "author": "Lê Minh G",
+            "content": "React Router là một thư viện giúp quản lý các route trong ứng dụng React. Bài viết này sẽ giới thiệu cách cài đặt và sử dụng React Router...",
+            "date": "2025-03-04",
+            "tags": [
+                "React",
+                "React Router",
+                "Routing"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Các tính năng mới trong React 17",
+            "author": "Phạm Quang H",
+            "content": "React 17 đã không ra mắt với nhiều tính năng lớn, nhưng vẫn có một số cải tiến đáng chú ý. Hãy cùng điểm qua những tính năng mới của React 17...",
+            "date": "2025-03-03",
+            "tags": [
+                "React",
+                "React 17",
+                "Cập nhật"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "Giới thiệu về TypeScript và React",
+            "author": "Nguyễn Văn I",
+            "content": "TypeScript giúp bạn dễ dàng quản lý mã nguồn trong ứng dụng React, đặc biệt khi dự án của bạn trở nên lớn hơn. Hãy tìm hiểu cách kết hợp React với TypeScript...",
+            "date": "2025-03-02",
+            "tags": [
+                "React",
+                "TypeScript",
+                "JavaScript"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Tìm hiểu về Context API trong React",
+            "author": "Trần Thị J",
+            "content": "Context API là một tính năng mạnh mẽ của React giúp bạn truyền dữ liệu giữa các component mà không cần phải truyền qua props. Bài viết này sẽ giúp bạn hiểu rõ hơn về cách sử dụng Context API...",
+            "date": "2025-03-01",
+            "tags": [
+                "React",
+                "Context API",
+                "State Management"
+            ]
+        },
+        {
+            "id": 11,
+            "title": "Bài học từ việc phát triển ứng dụng React lớn",
+            "author": "Lê Minh K",
+            "content": "Trong bài viết này, chúng ta sẽ cùng khám phá những bài học quý giá từ việc phát triển các ứng dụng React lớn, từ việc chia nhỏ component đến quản lý trạng thái phức tạp...",
+            "date": "2025-02-28",
+            "tags": [
+                "React",
+                "Best Practices",
+                "Large Scale"
+            ]
+        },
+        {
+            "id": 12,
+            "title": "Testing trong React với Jest và React Testing Library",
+            "author": "Phạm Quang L",
+            "content": "Testing là một phần quan trọng trong quá trình phát triển phần mềm. Bài viết này sẽ giới thiệu cách viết test cho ứng dụng React của bạn bằng Jest và React Testing Library...",
+            "date": "2025-02-27",
+            "tags": [
+                "React",
+                "Testing",
+                "Jest"
+            ]
+        }
+    ]
+}
