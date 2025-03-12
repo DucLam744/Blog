@@ -1,26 +1,42 @@
-// src/components/PostList.js
-
+import { useEffect, useState } from "react"
 import React from 'react';
-import { Link } from 'react-router-dom';  // Dùng Link để điều hướng
 import { Container, ListGroup } from 'react-bootstrap';
-import userData from '../data/data.json';
+import { Link } from "react-router-dom";
 
-const PostList = () => {
-  return (
-    <Container className="mt-5">
-      <h2 className="text-center mb-4">Danh sách bài viết</h2>
-      <ListGroup>
-        {userData.posts.map((post) => (
-          <ListGroup.Item key={post.id}>
-            <h5>
-              <Link to={`/posts/${post.id}`}>{post.title}</Link> {/* Liên kết tới trang chi tiết bài viết */}
-            </h5>
-            <p>{post.content.slice(0, 100)}...</p> {/* Hiển thị đoạn văn bản ngắn gọn */}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </Container>
-  );
-};
+export default function PostList() {
+    const [posts, setPosts] = useState([])
 
-export default PostList;
+    
+
+    useEffect(() => {
+        const getPostList = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/posts');
+
+                if (!response.ok) {
+                    throw new Error('Không thể kết nối API');
+                }
+                const data = await response.json();
+                setPosts(data);
+            } catch (error) {
+                console.error('Lỗi khi kết nối với API: ', error);
+            }
+        }
+        getPostList()
+    }, [])
+    return (
+        <Container className="mt-5">
+            <h2 className="text-center mb-4">Danh sách bài viết</h2>
+            <div>
+                {posts.map(post => (
+                    <ListGroup.Item key={post.id}>
+                        <h5>
+                            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        </h5>
+                        <p>{post.content.slice(0, 100)}...</p>
+                    </ListGroup.Item>
+                ))}
+            </div>
+        </Container>
+    )
+}
