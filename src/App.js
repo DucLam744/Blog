@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import DeletePost from "./components/DeletePost";
 import PostList from "./components/PostList";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
@@ -12,6 +11,8 @@ import EditPost from "./components/EditPost";
 const App = () => {
   const [isAuthencated, setIsAuthencated] = useState(false);
 
+  console.log(isAuthencated);
+  
   const handleLogin = () => {
     setIsAuthencated(true);
   }

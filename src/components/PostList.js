@@ -23,7 +23,7 @@ export default function PostList() {
         getPostList();
     }, []);
 
-    // Hàm xử lý xóa bài viết
+
     const handleDelete = async (postId) => {
         try {
             const response = await fetch(`http://localhost:4000/posts/${postId}`, {
@@ -34,7 +34,7 @@ export default function PostList() {
                 throw new Error('Không thể xóa bài viết');
             }
 
-            // Nếu xoá thành công, cập nhật lại danh sách bài viết
+
             setPosts(posts.filter(post => post.id !== postId));
         } catch (error) {
             console.error('Lỗi khi xoá bài viết: ', error);
