@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "id": "1",
+      "blogId": "1",
+      "accountResponse": {
+        "email": "user1@example.com"
+      },
+      "content": "Great article on React optimization! I learned a lot from it.",
+      "childrenComments": [
+        {
+          "id": "2",
+          "blogId": "1",
+          "accountResponse": {
+            "email": "user2@example.com"
+          },
+          "content": "This was very helpful for understanding Redux. Thanks for sharing!",
+          "childrenComments": [],
+          "createdAt": "2025-03-05T12:00:00Z",
+          "updatedAt": "2025-03-05T12:05:00Z"
+        }
+      ],
+      "createdAt": "2025-03-08T10:00:00Z",
+      "updatedAt": "2025-03-08T10:30:00Z"
+    },
+    {
+      "id": "902557",
+      "blogId": "1",
+      "accountResponse": {
+        "email": "instuctor@gmail.com"
+      },
+      "content": "hihihi",
+      "childrenComments": [],
+      "createdAt": "2025-03-14T17:16:21.475Z",
+      "updatedAt": "2025-03-14T17:58:29.583Z"
+    },
+    {
+      "id": "328209",
+      "blogId": "1",
+      "accountResponse": {
+        "email": "instuctor@gmail.com"
+      },
+      "content": "hohohohpoo\n",
+      "childrenComments": [
+        {
+          "id": "267022",
+          "blogId": "1",
+          "accountResponse": {
+            "email": "instuctor@gmail.com"
+          },
+          "content": "hihi",
+          "childrenComments": [],
+          "createdAt": "2025-03-14T17:24:00.924Z",
+          "updatedAt": "2025-03-14T18:03:03.482Z"
+        }
+      ],
+      "createdAt": "2025-03-14T17:16:29.656Z",
+      "updatedAt": "2025-03-14T18:03:15.703Z"
+    }
+  ]
+}

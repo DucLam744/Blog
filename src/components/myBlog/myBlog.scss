@@ -1,0 +1,50 @@
+.body{
+    table {
+        .thead{
+            th{
+                color: #C5BAFF;
+            }
+            .col-8{
+                background-color: #D1F8EF;
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 0;
+            }
+            .col-1, .col-3 {
+                padding: 10px 0;
+            }
+        }
+        tr{
+            border-bottom: 1px solid white;
+            .col-8{
+                background-color: #D1F8EF;
+                padding: 10px 10px;
+                padding-top: 20px;
+            }
+            
+            .col-1, .col-3{
+                background-color: #E8F9FF;
+                display: flex;
+                justify-content: space-around;
+                padding: 15px 10px;
+                padding-top: 20px;
+            }
+        }
+        th{
+            display: flex;
+
+        }
+        
+    }
+
+    .search {
+        margin-left: 20px !important;
+        margin-top: 0 !important;
+    }
+
+    .action {
+        &:hover{
+            scale: 1.1
+        }
+    }
+}

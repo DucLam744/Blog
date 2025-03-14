@@ -1,0 +1,99 @@
+.body{
+    margin-top: 100px;
+
+    .blogs{
+        width: 50%;
+        margin-left: 150px;
+    
+    
+        .blog{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 10px 0;
+        }
+        
+        .blog-detail{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .account{
+            display: flex;
+            align-items: center;
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+        }
+        
+        .actions{
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            cursor: pointer;
+        }
+        
+        .blog-content{
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        
+        .blog-footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            ul {
+                display: flex;
+                list-style: none;
+            }
+            li{
+                background-color: #ccc;
+                border-radius: 20px;
+                margin-right: 10px;
+                padding: 5px
+            }
+        }
+    }
+
+    .search {
+        margin-top: 10px;
+        margin-left: 100px;
+    }
+    .tags {
+        display: flex;
+        padding-left: 0;
+        padding-top: 20px;
+
+        li {
+            background-color: #e9ecef;
+            list-style-type: none;
+            padding: 1px 20px;
+            margin: 5px;
+            border-radius: 50px;
+        }
+    }
+    .blogs-right {
+        h5{
+            text-align: center;
+            background-color: black;
+            color: white;
+            width: 60%;
+            padding: 10px;
+            margin: auto;
+            margin-top: -70px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            cursor: pointer;
+            &:hover {
+                color: #005eff
+            }
+        }
+    }
+}
