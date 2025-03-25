@@ -2,3 +2,9 @@
     text-decoration: none;   
     cursor: pointer; 
 }
+
+.nav-g{
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px;
+}
