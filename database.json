@@ -1,0 +1,536 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Nguyễn Văn A",
+      "email": "nguyenvana@example.com",
+      "password": "hashed_password",
+      "followers": [
+        2,
+        3,
+        4
+      ],
+      "bookmarks": [
+        5
+      ]
+    },
+    {
+      "id": "2",
+      "username": "Trần Minh B",
+      "email": "tranminhb@example.com",
+      "password": "hashed_password",
+      "followers": [
+        1,
+        5
+      ],
+      "bookmarks": [
+        1,
+        3,
+        6
+      ]
+    },
+    {
+      "id": "3",
+      "username": "Lê Thị C",
+      "email": "lethic@example.com",
+      "password": "hashed_password",
+      "followers": [
+        2,
+        4,
+        6
+      ],
+      "bookmarks": [
+        4,
+        7
+      ]
+    },
+    {
+      "id": "4",
+      "username": "Phạm Hoàng D",
+      "email": "phamhoangd@example.com",
+      "password": "hashed_password",
+      "followers": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "bookmarks": [
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "5",
+      "username": "Vũ Ngọc E",
+      "email": "vungoc@example.com",
+      "password": "hashed_password",
+      "followers": [
+        1,
+        6,
+        8,
+        9
+      ],
+      "bookmarks": [
+        1,
+        5,
+        10
+      ]
+    },
+    {
+      "id": "6",
+      "username": "Đỗ Thanh F",
+      "email": "dothanh@example.com",
+      "password": "hashed_password",
+      "followers": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "bookmarks": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "7",
+      "username": "Hoàng Nam G",
+      "email": "hoangnam@example.com",
+      "password": "hashed_password",
+      "followers": [
+        1,
+        4,
+        5,
+        6,
+        8,
+        10
+      ],
+      "bookmarks": [
+        12,
+        14
+      ]
+    },
+    {
+      "id": "8",
+      "username": "Bùi Quang H",
+      "email": "buiquang@example.com",
+      "password": "hashed_password",
+      "followers": [
+        1,
+        2,
+        3,
+        7,
+        9
+      ],
+      "bookmarks": [
+        3,
+        5,
+        9
+      ]
+    },
+    {
+      "id": "9",
+      "username": "Cao Thị I",
+      "email": "caothii@example.com",
+      "password": "hashed_password",
+      "followers": [
+        2,
+        3,
+        6,
+        8
+      ],
+      "bookmarks": [
+        7,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "10",
+      "username": "Nguyễn Quốc J",
+      "email": "nguyenquoc@example.com",
+      "password": "hashed_password",
+      "followers": [
+        1,
+        3,
+        4,
+        6,
+        7
+      ],
+      "bookmarks": [
+        1,
+        8,
+        11
+      ]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "1",
+      "title": "Hướng dẫn học React từ A-Z",
+      "content": "React là một thư viện JavaScript mạnh mẽ để xây dựng giao diện người dùng...",
+      "authorId": 1,
+      "likes": [
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "dislikes": [
+        6
+      ],
+      "createDate": "2025-03-25",
+      "comments": [
+        {
+          "id": 1,
+          "userId": 2,
+          "content": "Bài viết rất hữu ích! Cảm ơn tác giả!",
+          "replies": [
+            {
+              "id": 1,
+              "userId": 1,
+              "content": "Cảm ơn bạn đã ủng hộ!"
+            },
+            {
+              "id": 2,
+              "userId": 3,
+              "content": "Tôi cũng thấy bài viết rất dễ hiểu!"
+            }
+          ]
+        },
+        {
+          "id": 1742920721277,
+          "userId": "1",
+          "content": "ads",
+          "replies": []
+        },
+        {
+          "id": 1742921282664,
+          "userId": 1,
+          "content": "ads",
+          "replies": []
+        },
+        {
+          "id": 1742922428877,
+          "userId": 2,
+          "content": "adsasd",
+          "replies": []
+        }
+      ],
+      "tags": [
+        "React",
+        "JavaScript",
+        "Frontend"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Lập trình viên nên học gì năm 2025?",
+      "content": "Ngành IT thay đổi nhanh chóng, hãy cùng xem xu hướng lập trình sắp tới...",
+      "authorId": 3,
+      "likes": [
+        1,
+        4,
+        6,
+        7,
+        9,
+        10
+      ],
+      "dislikes": [
+        2
+      ],
+      "createDate": "2025-03-25",
+      "comments": [
+        {
+          "id": 3,
+          "userId": 6,
+          "content": "Bài viết rất hay, mình sẽ tham khảo!",
+          "replies": []
+        },
+        {
+          "id": 1742921297596,
+          "userId": 1,
+          "content": "dá",
+          "replies": []
+        }
+      ],
+      "tags": [
+        "Lập trình",
+        "Công nghệ",
+        "Học tập"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Cách tối ưu hiệu suất website",
+      "content": "Tối ưu hóa hiệu suất giúp trang web của bạn chạy nhanh hơn...",
+      "authorId": 2,
+      "likes": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "Performance",
+        "Web",
+        "Optimization"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Tại sao TypeScript lại quan trọng?",
+      "content": "TypeScript giúp cải thiện code JavaScript với kiểu dữ liệu mạnh mẽ...",
+      "authorId": 4,
+      "likes": [
+        2,
+        3,
+        7
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [
+        5
+      ],
+      "comments": [
+        {
+          "id": 4,
+          "userId": 3,
+          "content": "TypeScript thật sự giúp code dễ hiểu hơn!",
+          "replies": []
+        }
+      ],
+      "tags": [
+        "TypeScript",
+        "JavaScript",
+        "Development"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "10 mẹo tăng tốc phát triển phần mềm",
+      "content": "Tăng tốc quy trình phát triển bằng cách sử dụng CI/CD, refactor code...",
+      "authorId": 5,
+      "likes": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [
+        4
+      ],
+      "comments": [],
+      "tags": [
+        "Software",
+        "Productivity",
+        "Development"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Blockchain có thể thay đổi thế giới như thế nào?",
+      "content": "Blockchain đang thay đổi cách chúng ta giao dịch và lưu trữ dữ liệu...",
+      "authorId": 2,
+      "likes": [
+        5,
+        6,
+        8,
+        9
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [
+        {
+          "id": 5,
+          "userId": 7,
+          "content": "Mình đang tìm hiểu về smart contract, bài viết rất hay!",
+          "replies": []
+        }
+      ],
+      "tags": [
+        "Blockchain",
+        "Crypto",
+        "FinTech"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Machine Learning và tương lai của trí tuệ nhân tạo",
+      "content": "ML đang dần thay đổi cách chúng ta phân tích dữ liệu...",
+      "authorId": 6,
+      "likes": [
+        1,
+        2,
+        5,
+        8,
+        10
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [
+        3
+      ],
+      "comments": [],
+      "tags": [
+        "AI",
+        "Machine Learning",
+        "Data Science"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Làm thế nào để trở thành một UI/UX Designer?",
+      "content": "Thiết kế UI/UX không chỉ là làm cho đẹp, mà còn là làm cho dễ sử dụng...",
+      "authorId": 8,
+      "likes": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "UI/UX",
+        "Design",
+        "Creativity"
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Những sai lầm phổ biến trong bảo mật web",
+      "content": "Dưới đây là các lỗi phổ biến mà lập trình viên hay mắc phải...",
+      "authorId": 9,
+      "likes": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [
+        {
+          "id": 6,
+          "userId": 5,
+          "content": "Mình từng bị dính lỗi này, cảm ơn tác giả!",
+          "replies": []
+        }
+      ],
+      "tags": [
+        "Security",
+        "Web",
+        "Development"
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Cách sử dụng Docker hiệu quả",
+      "content": "Docker giúp đơn giản hóa việc deploy ứng dụng...",
+      "authorId": 10,
+      "likes": [
+        1,
+        4,
+        6,
+        8
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "Docker",
+        "DevOps",
+        "Cloud"
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Lập trình viên cần biết về API RESTful",
+      "content": "API RESTful giúp kết nối các hệ thống một cách dễ dàng...",
+      "authorId": 3,
+      "likes": [
+        2,
+        5,
+        7,
+        10
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "API",
+        "Backend",
+        "Development"
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Những công nghệ sẽ thống trị năm 2030",
+      "content": "AI, Blockchain, Quantum Computing sẽ là những công nghệ bùng nổ...",
+      "authorId": 7,
+      "likes": [
+        1,
+        3,
+        6,
+        9
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "Technology",
+        "Future",
+        "AI"
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Học lập trình có khó không?",
+      "content": "Nhiều người nghĩ lập trình khó, nhưng nếu biết cách học đúng thì không khó...",
+      "authorId": 5,
+      "likes": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "Programming",
+        "Beginner",
+        "Career"
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Hướng dẫn sử dụng Git và GitHub",
+      "content": "Git là công cụ quan trọng giúp quản lý source code hiệu quả...",
+      "authorId": 4,
+      "likes": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "createDate": "2025-03-25",
+      "dislikes": [],
+      "comments": [],
+      "tags": [
+        "Git",
+        "Version Control",
+        "Collaboration"
+      ]
+    }
+  ]
+}

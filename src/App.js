@@ -1,56 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PostList from "./components/PostList";
-import Login from "./components/Login";
-import PrivateRoute from "./components/PrivateRoute";
-import { useState } from "react";
-import PostDetails from "./components/PostDetails";
-import NavbarComponent from "./components/NavbarComponent";
-import CreatePost from "./components/CreatePost";
-import EditPost from "./components/EditPost";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/home/Home";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Header from "./components/layout/Header.js";
+import Footer from "./components/layout/Footer.js";
+import Login from "./components/auth/Login.js";
+import Register from "./components/auth/Register.js";
+import Logout from "./components/auth/Logout.js"
+import UserProfile from "./components/users/UserProfile.js";
+import BlogDetail from "./components/blogs/BlogDetail.js";
+import CreateBlog from "./components/blogs/CreateBlog.js";
 
-const App = () => {
-  const [isAuthencated, setIsAuthencated] = useState(false);
-
-  console.log(isAuthencated);
-  
-  const handleLogin = () => {
-    setIsAuthencated(true);
-  }
-  const handleLogout = () => {
-    setIsAuthencated(false);
-  }
+function App() {
   return (
-    <Router>
-      {isAuthencated && <NavbarComponent onLogout={handleLogout} />}
+    <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<Login onLogin={handleLogin} />} />
-        <Route path="/posts" element={
-          <PrivateRoute isAuthencated={isAuthencated}>
-            <PostList />
-          </PrivateRoute>} />
-        <Route path="/posts/:postId" element={
-          <PrivateRoute isAuthencated={isAuthencated}>
-            <PostDetails />
-          </PrivateRoute>} />
-        <Route
-          path="/posts/createPost"
-          element={
-            <PrivateRoute isAuthencated={isAuthencated}>
-              <CreatePost />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/posts/edit/:postId"
-          element={
-            <PrivateRoute isAuthencated={isAuthencated}>
-              <EditPost />
-            </PrivateRoute>
-          }
-        />
+      <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/blogs/:id" element={<BlogDetail />} />
+        <Route path="/create-blog" element={<CreateBlog />} />
       </Routes>
-    </Router>
-  )
-};
+      <Footer />
+    </BrowserRouter>
+  );
+}
 
 export default App;
