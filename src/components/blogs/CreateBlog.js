@@ -55,7 +55,7 @@ export default function CreateBlog() {
                 <li key={index}>{item}</li>
               ))}
             </ul>
-            {success && <h1>success</h1>}
+            {success && <h1 style={{ color: "green" }}>{success}</h1>}
 
             <form>
               <fieldset>
