@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useState } from "react"
+import { Editor } from "@tinymce/tinymce-react"
 
 const BlogEditor = ({ value, onChange }) => {
+  const handleEditorChange = (content) => {
+    onChange(content)
+  }
+
   return (
     <div>
       <h2>Write your blog post</h2>
-      <CKEditor
-        editor={ClassicEditor}
-        data={value}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          onChange(data);
+      <Editor
+        value={value}
+        onEditorChange={handleEditorChange}
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: ["link", "lists", "image"],
+          toolbar:
+            "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image",
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default BlogEditor;
+export default BlogEditor
