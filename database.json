@@ -6,9 +6,9 @@
       "email": "nguyenvana@example.com",
       "password": "hashed_password",
       "followers": [
-        2,
         3,
-        4
+        4,
+        8
       ],
       "bookmarks": [
         5
@@ -24,7 +24,6 @@
         5
       ],
       "bookmarks": [
-        1,
         3,
         6
       ]
@@ -35,9 +34,9 @@
       "email": "lethic@example.com",
       "password": "hashed_password",
       "followers": [
-        2,
         4,
-        6
+        6,
+        2
       ],
       "bookmarks": [
         4,
@@ -174,34 +173,16 @@
       "content": "React là một thư viện JavaScript mạnh mẽ để xây dựng giao diện người dùng...",
       "authorId": 1,
       "likes": [
-        2,
         3,
         5,
         7,
-        8
+        2
       ],
       "dislikes": [
         6
       ],
       "createDate": "2025-03-25",
       "comments": [
-        {
-          "id": 1,
-          "userId": 2,
-          "content": "Bài viết rất hữu ích! Cảm ơn tác giả!",
-          "replies": [
-            {
-              "id": 1,
-              "userId": 1,
-              "content": "Cảm ơn bạn đã ủng hộ!"
-            },
-            {
-              "id": 2,
-              "userId": 3,
-              "content": "Tôi cũng thấy bài viết rất dễ hiểu!"
-            }
-          ]
-        },
         {
           "id": 1742920721277,
           "userId": "1",
@@ -256,6 +237,12 @@
           "userId": 1,
           "content": "dá",
           "replies": []
+        },
+        {
+          "id": 1742923204983,
+          "userId": 2,
+          "content": "asa",
+          "replies": []
         }
       ],
       "tags": [
@@ -272,8 +259,8 @@
       "likes": [
         3,
         5,
-        8,
-        9
+        9,
+        8
       ],
       "createDate": "2025-03-25",
       "dislikes": [],
@@ -290,9 +277,9 @@
       "content": "TypeScript giúp cải thiện code JavaScript với kiểu dữ liệu mạnh mẽ...",
       "authorId": 4,
       "likes": [
-        2,
         3,
-        7
+        7,
+        8
       ],
       "createDate": "2025-03-25",
       "dislikes": [
