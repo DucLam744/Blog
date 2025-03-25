@@ -1,5 +1,4 @@
 import { useState } from "react"
-import BlogEditor from "../editor/Editor"
 import axios from "axios"
 import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js"
 
@@ -12,7 +11,7 @@ export default function CreateBlog() {
   const [error, setError] = useState([])
   const [success, setSuccess] = useState("")
 
-  const handleCreateBlog = () => {
+  const handleCreateBlog = async () => {
     let tempErr = []
     let canCreate = true
     if (!blog.title) {
@@ -31,11 +30,18 @@ export default function CreateBlog() {
       setError(tempErr)
     }
     if (canCreate) {
-      axios
+      const today = new Date()
+      const formattedDate = today.toISOString().split("T")[0]
+
+      await axios
         .post(`${environment.apiUrl}/blogs`, {
           ...blog,
-          createDate: new Date(),
+          createDate: formattedDate,
+          authorId: JSON.parse(localStorage.getItem(USER_CURRENT)).id,
           tags: blog.tags.split(", ").map((tag) => tag.trim()),
+          likes: [],
+          dislikes: [],
+          comments: [],
         })
         .then(() => {
           setBlog({ title: "", content: "", tags: "" })

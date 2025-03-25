@@ -164,6 +164,12 @@
         8,
         11
       ]
+    },
+    {
+      "id": "d2b5",
+      "username": "user1",
+      "email": "minh@gmail.com",
+      "password": "123456"
     }
   ],
   "blogs": [
@@ -520,23 +526,17 @@
       ]
     },
     {
-      "id": "f0fe",
-      "title": "dgfnfgh",
-      "content": "gdhnghn",
-      "createDate": "2025-03-25T17:46:30.756Z",
+      "id": "937e",
+      "title": "etyjhrtyuj",
+      "content": "ryujtyuikj",
       "tags": [
-        "4r6h6ht",
-        "drydtfyunjt"
-      ]
-    },
-    {
-      "id": "fc65",
-      "title": "ytukmyfu",
-      "content": "kyfuimkguyi,m",
-      "tags": [
-        "yum,kyui,"
+        "rthrth"
       ],
-      "createDate": "2025-03-25T17:52:38.228Z"
+      "createDate": "2025-03-25",
+      "authorId": "d2b5",
+      "likes": [],
+      "dislikes": [],
+      "comments": []
     }
   ]
 }
