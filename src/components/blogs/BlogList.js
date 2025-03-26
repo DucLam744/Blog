@@ -1,9 +1,7 @@
-"use client"
-
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { environment } from "../../shared/constants/StorageKey.js"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function BlogList() {
   const [allBlogs, setAllBlogs] = useState([])
@@ -248,9 +246,11 @@ function BlogList() {
                           />
                         </a>
                         <div className="info">
-                          <a href="/profile/eric-simons" className="author">
+                          <Link
+                            to={`/profile/${item.authorId}`}
+                            className="author">
                             {getAuthorNameByAuthorId(item.authorId)}
-                          </a>
+                          </Link>
                           <span className="date">
                             {item.createDate || "January 20th"}
                           </span>

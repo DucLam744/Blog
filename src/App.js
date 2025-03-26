@@ -9,6 +9,8 @@ import Logout from "./components/auth/Logout.js"
 import UserProfile from "./components/users/UserProfile.js"
 import BlogDetail from "./components/blogs/BlogDetail.js"
 import CreateBlog from "./components/blogs/CreateBlog.js"
+import EditBlog from "./components/blogs/EditBlog.js"
+import EditProfile from "./components/users/EditProfile.js"
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="/create-blog" element={<CreateBlog />} />
+        <Route path="/edit-blog/:id" element={<EditBlog />} />
+        <Route path="/edit-profile/:id" element={<EditProfile />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -1,20 +1,20 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { environment } from "../../shared/constants/StorageKey.js";
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useParams, Link } from "react-router-dom"
+import { environment } from "../../shared/constants/StorageKey.js"
 
 const CommentForm = ({ currentUser, onSubmit }) => {
-  const [commentText, setCommentText] = useState("");
+  const [commentText, setCommentText] = useState("")
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!commentText.trim()) return;
+    e.preventDefault()
+    if (!commentText.trim()) return
 
-    onSubmit(commentText);
-    setCommentText("");
-  };
+    onSubmit(commentText)
+    setCommentText("")
+  }
 
-  if (!currentUser) return null;
+  if (!currentUser) return null
 
   return (
     <form className="card comment-form" onSubmit={handleSubmit}>
@@ -24,8 +24,7 @@ const CommentForm = ({ currentUser, onSubmit }) => {
           placeholder="Write a comment..."
           rows={3}
           value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-        ></textarea>
+          onChange={(e) => setCommentText(e.target.value)}></textarea>
       </div>
       <div className="card-footer">
         <img
@@ -36,8 +35,8 @@ const CommentForm = ({ currentUser, onSubmit }) => {
         <button className="btn btn-sm btn-primary">Post Comment</button>
       </div>
     </form>
-  );
-};
+  )
+}
 
 const Comment = ({
   comment,
@@ -51,36 +50,36 @@ const Comment = ({
     id: comment.userId,
     username: `User ${comment.userId}`,
     image: "http://i.imgur.com/Qr71crq.jpg",
-  });
-  const [replyUsers, setReplyUsers] = useState({});
-  const [loading, setLoading] = useState(true);
+  })
+  const [replyUsers, setReplyUsers] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadUserData = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
-        const user = await findUser(comment.userId);
-        setCommentUser(user);
+        const user = await findUser(comment.userId)
+        setCommentUser(user)
 
         if (comment.replies && comment.replies.length > 0) {
-          const replyUsersData = {};
+          const replyUsersData = {}
           for (const reply of comment.replies) {
-            replyUsersData[reply.userId] = await findUser(reply.userId);
+            replyUsersData[reply.userId] = await findUser(reply.userId)
           }
-          setReplyUsers(replyUsersData);
+          setReplyUsers(replyUsersData)
         }
       } catch (error) {
-        console.error("Error loading user data:", error);
+        console.error("Error loading user data:", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    loadUserData();
-  }, [comment, findUser]);
+    loadUserData()
+  }, [comment, findUser])
 
   if (loading) {
-    return <div className="card">Loading comment...</div>;
+    return <div className="card">Loading comment...</div>
   }
 
   return (
@@ -105,8 +104,9 @@ const Comment = ({
           <span className="mod-options">
             <i
               className="ion-trash-a"
-              onClick={() => onDeleteComment && onDeleteComment(comment.id)}
-            ></i>
+              onClick={() =>
+                onDeleteComment && onDeleteComment(comment.id)
+              }></i>
           </span>
         )}
       </div>
@@ -120,7 +120,7 @@ const Comment = ({
               id: reply.userId,
               username: `User ${reply.userId}`,
               image: "http://i.imgur.com/Qr71crq.jpg",
-            };
+            }
 
             return (
               <div className="card mb-2" key={reply.id}>
@@ -130,8 +130,7 @@ const Comment = ({
                 <div className="card-footer py-1">
                   <a
                     href={`/profile/${replyUser.id}`}
-                    className="comment-author"
-                  >
+                    className="comment-author">
                     <img
                       src={replyUser.image || "/placeholder.svg"}
                       className="comment-author-img"
@@ -142,8 +141,7 @@ const Comment = ({
                   &nbsp;
                   <a
                     href={`/profile/${replyUser.id}`}
-                    className="comment-author small"
-                  >
+                    className="comment-author small">
                     {replyUser.username}
                   </a>
                   <span className="date-posted small">
@@ -151,66 +149,66 @@ const Comment = ({
                   </span>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 function BlogDetail() {
-  const { id } = useParams();
-  const [blog, setBlog] = useState(null);
-  const [author, setAuthor] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [userCache, setUserCache] = useState({});
+  const { id } = useParams()
+  const [blog, setBlog] = useState(null)
+  const [author, setAuthor] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [currentUser, setCurrentUser] = useState(null)
+  const [userCache, setUserCache] = useState({})
 
   useEffect(() => {
     try {
-      const userDataString = localStorage.getItem("user_current");
+      const userDataString = localStorage.getItem("user_current")
       if (userDataString) {
-        const userData = JSON.parse(userDataString);
+        const userData = JSON.parse(userDataString)
         setCurrentUser({
           ...userData,
           image: "http://i.imgur.com/Qr71crq.jpg",
-        });
+        })
       }
     } catch (error) {
-      console.error("Error parsing user data from localStorage:", error);
+      console.error("Error parsing user data from localStorage:", error)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const fetchBlogAndAuthor = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
         const blogResponse = await axios.get(
           `${environment.apiUrl}/blogs/${id}`
-        );
-        const blogData = blogResponse.data;
-        setBlog(blogData);
+        )
+        const blogData = blogResponse.data
+        setBlog(blogData)
         const authorResponse = await axios.get(
           `${environment.apiUrl}/users/${blogData.authorId}`
-        );
-        setAuthor(authorResponse.data);
+        )
+        setAuthor(authorResponse.data)
       } catch (error) {
-        console.error("Error fetching blog details:", error);
+        console.error("Error fetching blog details:", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
     if (id) {
-      fetchBlogAndAuthor();
+      fetchBlogAndAuthor()
     }
-  }, [id]);
+  }, [id])
 
   const handleSubmitComment = async (commentText) => {
     if (!currentUser) {
-      alert("Please login to comment");
-      return;
+      alert("Please login to comment")
+      return
     }
 
     try {
@@ -220,181 +218,181 @@ function BlogDetail() {
         userId: currentUser.id,
         content: commentText,
         replies: [],
-      };
+      }
 
       const updatedBlog = {
         ...blog,
         comments: [...blog.comments, newComment],
-      };
+      }
       await axios.patch(`${environment.apiUrl}/blogs/${id}`, {
         comments: updatedBlog.comments,
-      });
-      setBlog(updatedBlog);
+      })
+      setBlog(updatedBlog)
     } catch (error) {
-      console.error("Error posting comment:", error);
+      console.error("Error posting comment:", error)
     }
-  };
+  }
 
   const handleDeleteComment = async (commentId) => {
-    if (!currentUser) return;
+    if (!currentUser) return
 
     try {
       const updatedComments = blog.comments.filter(
         (comment) => comment.id !== commentId
-      );
+      )
       await axios.patch(`${environment.apiUrl}/blogs/${id}`, {
         comments: updatedComments,
-      });
+      })
       setBlog({
         ...blog,
         comments: updatedComments,
-      });
+      })
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      console.error("Error deleting comment:", error)
     }
-  };
+  }
 
   const handleLike = async () => {
     if (!currentUser) {
-      alert("Please login to like posts");
-      return;
+      alert("Please login to like posts")
+      return
     }
 
     try {
-      const userLiked = blog.likes.includes(currentUser.id);
-      let updatedLikes;
+      const userLiked = blog.likes.includes(currentUser.id)
+      let updatedLikes
 
       if (userLiked) {
-        updatedLikes = blog.likes.filter((likeId) => likeId !== currentUser.id);
+        updatedLikes = blog.likes.filter((likeId) => likeId !== currentUser.id)
       } else {
-        updatedLikes = [...blog.likes, currentUser.id];
+        updatedLikes = [...blog.likes, currentUser.id]
       }
 
       await axios.patch(`${environment.apiUrl}/blogs/${id}`, {
         likes: updatedLikes,
-      });
+      })
 
       setBlog({
         ...blog,
         likes: updatedLikes,
-      });
+      })
     } catch (error) {
-      console.error("Error updating like:", error);
+      console.error("Error updating like:", error)
     }
-  };
+  }
 
   const handleFollow = async () => {
     if (!currentUser) {
-      alert("Please login to follow authors");
-      return;
+      alert("Please login to follow authors")
+      return
     }
 
-    if (!author) return;
+    if (!author) return
 
     try {
-      const isFollowing = author.followers.includes(currentUser.id);
-      let updatedFollowers;
+      const isFollowing = author.followers.includes(currentUser.id)
+      let updatedFollowers
 
       if (isFollowing) {
         updatedFollowers = author.followers.filter(
           (followerId) => followerId !== currentUser.id
-        );
+        )
       } else {
-        updatedFollowers = [...author.followers, currentUser.id];
+        updatedFollowers = [...author.followers, currentUser.id]
       }
 
       await axios.patch(`${environment.apiUrl}/users/${author.id}`, {
         followers: updatedFollowers,
-      });
+      })
 
       setAuthor({
         ...author,
         followers: updatedFollowers,
-      });
+      })
     } catch (error) {
-      console.error("Error updating follow status:", error);
+      console.error("Error updating follow status:", error)
     }
-  };
+  }
 
   const handleBookmark = async () => {
     if (!currentUser) {
-      alert("Please login to bookmark posts");
-      return;
+      alert("Please login to bookmark posts")
+      return
     }
 
     try {
-      const hasBookmarked = currentUser.bookmarks.includes(id);
-      let updatedBookmarks;
+      const hasBookmarked = currentUser.bookmarks.includes(id)
+      let updatedBookmarks
 
       if (hasBookmarked) {
         updatedBookmarks = currentUser.bookmarks.filter(
           (bookmarkId) => bookmarkId !== id
-        );
+        )
       } else {
-        updatedBookmarks = [...currentUser.bookmarks, id];
+        updatedBookmarks = [...currentUser.bookmarks, id]
       }
 
       await axios.patch(`${environment.apiUrl}/users/${currentUser.id}`, {
         bookmarks: updatedBookmarks,
-      });
+      })
 
       const updatedUser = {
         ...currentUser,
         bookmarks: updatedBookmarks,
-      };
-      setCurrentUser(updatedUser);
-      localStorage.setItem("user_current", JSON.stringify(updatedUser));
+      }
+      setCurrentUser(updatedUser)
+      localStorage.setItem("user_current", JSON.stringify(updatedUser))
     } catch (error) {
-      console.error("Error updating bookmark:", error);
+      console.error("Error updating bookmark:", error)
     }
-  };
+  }
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("vi-VN", options);
-  };
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString("vi-VN", options)
+  }
 
   const findUser = async (userId) => {
     if (userCache[userId]) {
-      return userCache[userId];
+      return userCache[userId]
     }
     try {
-      const response = await axios.get(`${environment.apiUrl}/users/${userId}`);
-      const userData = response.data;
+      const response = await axios.get(`${environment.apiUrl}/users/${userId}`)
+      const userData = response.data
       const user = {
         id: userData.id,
         username: userData.username,
         image: "http://i.imgur.com/Qr71crq.jpg",
-      };
+      }
 
       setUserCache((prev) => ({
         ...prev,
         [userId]: user,
-      }));
+      }))
 
-      return user;
+      return user
     } catch (error) {
-      console.error("Error fetching user:", error);
+      console.error("Error fetching user:", error)
       return {
         id: userId,
         username: `User ${userId}`,
         image: "http://i.imgur.com/Qr71crq.jpg",
-      };
+      }
     }
-  };
+  }
 
   if (loading) {
-    return <div className="container">Loading...</div>;
+    return <div className="container">Loading...</div>
   }
 
   if (!blog || !author) {
-    return <div className="container">Blog not found</div>;
+    return <div className="container">Blog not found</div>
   }
 
-  const isFollowing = currentUser && author.followers.includes(currentUser.id);
-  const hasLiked = currentUser && blog.likes.includes(currentUser.id);
+  const isFollowing = currentUser && author.followers.includes(currentUser.id)
+  const hasLiked = currentUser && blog.likes.includes(currentUser.id)
   const hasBookmarked =
-    currentUser && currentUser.bookmarks && currentUser.bookmarks.includes(id);
+    currentUser && currentUser.bookmarks && currentUser.bookmarks.includes(id)
 
   return (
     <div className="article-page">
@@ -403,21 +401,20 @@ function BlogDetail() {
           <h1>{blog.title}</h1>
 
           <div className="article-meta">
-            <a href={`/profile/${author.id}`}>
+            <Link href={`/profile/${author.id}`}>
               <img src="http://i.imgur.com/Qr71crq.jpg" alt={author.username} />
-            </a>
+            </Link>
             <div className="info">
-              <a href={`/profile/${author.id}`} className="author">
+              <Link href={`/profile/${author.id}`} className="author">
                 {author.username}
-              </a>
+              </Link>
               <span className="date">{formatDate(blog.createDate)}</span>
             </div>
             <button
               className={`btn btn-sm ${
                 isFollowing ? "btn-secondary" : "btn-outline-secondary"
               }`}
-              onClick={handleFollow}
-            >
+              onClick={handleFollow}>
               <i className="ion-plus-round"></i>
               &nbsp; {isFollowing ? "Unfollow" : "Follow"} {author.username}
               <span className="counter">({author.followers.length})</span>
@@ -427,8 +424,7 @@ function BlogDetail() {
               className={`btn btn-sm ${
                 hasLiked ? "btn-primary" : "btn-outline-primary"
               }`}
-              onClick={handleLike}
-            >
+              onClick={handleLike}>
               <i className="ion-heart"></i>
               &nbsp; {hasLiked ? "Unfavorite" : "Favorite"} Post
               <span className="counter">({blog.likes.length})</span>
@@ -438,8 +434,7 @@ function BlogDetail() {
               className={`btn btn-sm ${
                 hasBookmarked ? "btn-success" : "btn-outline-success"
               }`}
-              onClick={handleBookmark}
-            >
+              onClick={handleBookmark}>
               <i className="ion-bookmark"></i>
               &nbsp; {hasBookmarked ? "Bookmarked" : "Bookmark"}
             </button>
@@ -465,21 +460,20 @@ function BlogDetail() {
 
         <div className="article-actions">
           <div className="article-meta">
-            <a href={`/profile/${author.id}`}>
+            <Link to={`/profile/${author.id}`}>
               <img src="http://i.imgur.com/Qr71crq.jpg" alt={author.username} />
-            </a>
+            </Link>
             <div className="info">
-              <a href={`/profile/${author.id}`} className="author">
+              <Link to={`/profile/${author.id}`} className="author">
                 {author.username}
-              </a>
+              </Link>
               <span className="date">{formatDate(blog.createDate)}</span>
             </div>
             <button
               className={`btn btn-sm ${
                 isFollowing ? "btn-secondary" : "btn-outline-secondary"
               }`}
-              onClick={handleFollow}
-            >
+              onClick={handleFollow}>
               <i className="ion-plus-round"></i>
               &nbsp; {isFollowing ? "Unfollow" : "Follow"} {author.username}
             </button>
@@ -488,8 +482,7 @@ function BlogDetail() {
               className={`btn btn-sm ${
                 hasLiked ? "btn-primary" : "btn-outline-primary"
               }`}
-              onClick={handleLike}
-            >
+              onClick={handleLike}>
               <i className="ion-heart"></i>
               &nbsp; {hasLiked ? "Unfavorite" : "Favorite"} Article
               <span className="counter">({blog.likes.length})</span>
@@ -499,8 +492,7 @@ function BlogDetail() {
               className={`btn btn-sm ${
                 hasBookmarked ? "btn-success" : "btn-outline-success"
               }`}
-              onClick={handleBookmark}
-            >
+              onClick={handleBookmark}>
               <i className="ion-bookmark"></i>
               &nbsp; {hasBookmarked ? "Bookmarked" : "Bookmark"}
             </button>
@@ -530,7 +522,7 @@ function BlogDetail() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default BlogDetail;
+export default BlogDetail

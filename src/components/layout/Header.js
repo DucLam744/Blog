@@ -37,7 +37,7 @@ export default function Header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to={"/profile"}>
+                <Link class="nav-link" to={`/profile/${state.user.id}`}>
                   Profile
                 </Link>
               </li>
