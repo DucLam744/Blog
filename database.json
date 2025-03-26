@@ -170,8 +170,12 @@
       "username": "Le Nhat Minh",
       "email": "minh@gmail.com",
       "password": "123456",
-      "followers": [],
-      "bookmarks": []
+      "followers": [
+        "cab1"
+      ],
+      "bookmarks": [
+        "1"
+      ]
     }
   ],
   "blogs": [
@@ -548,7 +552,9 @@
       ],
       "createDate": "2025-03-26",
       "authorId": "cab1",
-      "likes": [],
+      "likes": [
+        "cab1"
+      ],
       "dislikes": [],
       "comments": []
     }
