@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useAuth } from "../../shared/context/AuthContext"
+import { USER_CURRENT } from "../../shared/constants/StorageKey"
 
 export default function Header() {
   const { state } = useAuth()
@@ -37,7 +38,11 @@ export default function Header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to={`/profile/${state.user.id}`}>
+                <Link
+                  class="nav-link"
+                  to={`/profile/${
+                    JSON.parse(localStorage.getItem(USER_CURRENT)).id
+                  }`}>
                   Profile
                 </Link>
               </li>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js"
+import { environment } from "../../shared/constants/StorageKey.js"
 import { Link, useParams } from "react-router-dom"
 import { useAuth } from "../../shared/context/AuthContext.js"
 import { useNavigate } from "react-router-dom"
@@ -137,11 +137,10 @@ export default function UserProfile() {
                     </button>
                   </div>
                 </div>
-                <a
-                  href="/article/how-to-buil-webapps-that-scale"
-                  className="preview-link">
-                  <Link></Link>
-                  <h1>{blog.title}</h1>
+                <a className="preview-link">
+                  <h1 onClick={() => navigate(`/blogs/${blog.id}`)}>
+                    {blog.title}
+                  </h1>
                   <span>Read more...</span>
                   <ul className="tag-list">
                     {blog.tags &&
