@@ -36,9 +36,9 @@
       "email": "lethic@example.com",
       "password": "hashed_password",
       "followers": [
-        "4",
         "6",
-        "2"
+        "2",
+        null
       ],
       "bookmarks": [
         "4",
@@ -57,9 +57,9 @@
         "7"
       ],
       "bookmarks": [
-        "2",
         "8",
-        "9"
+        "9",
+        "2"
       ]
     },
     {
@@ -195,7 +195,6 @@
         "5",
         "7",
         "2",
-        "4",
         "1"
       ],
       "dislikes": [
@@ -240,7 +239,6 @@
       "content": "Ngành IT thay đổi nhanh chóng, hãy cùng xem xu hướng lập trình sắp tới...",
       "authorId": 3,
       "likes": [
-        "4",
         "6",
         "7",
         "9",
@@ -565,14 +563,16 @@
       "comments": []
     },
     {
-      "id": "4213",
-      "title": "Bài viết hay",
-      "content": "dsasda",
+      "id": "621a",
+      "title": "adssad",
+      "content": "<p>ádsaddassadsadfvbf asd,sadf</p>",
       "tags": [
-        "IT"
+        "manh",
+        "na",
+        "na"
       ],
       "createDate": "2025-03-26",
-      "authorId": "63e6",
+      "authorId": "4",
       "likes": [],
       "dislikes": [],
       "comments": []
