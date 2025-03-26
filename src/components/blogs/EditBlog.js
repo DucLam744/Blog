@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js"
 import { useParams } from "react-router-dom"
+import Editor from "../editor/Editor.js"
 
 export default function EditBlog() {
   const [blog, setBlog] = useState({
@@ -41,6 +42,7 @@ export default function EditBlog() {
         .then(() => {
           setBlog({ title: "", content: "", tags: "" })
           setSuccess("Edit blog successfully!")
+          setError([])
         })
         .catch((err) => setError(...error, err))
     }
@@ -48,7 +50,9 @@ export default function EditBlog() {
 
   const getBlog = async () => {
     const response = await axios.get(`${environment.apiUrl}/blogs/${blogId}`)
+    response.data.tags = response.data.tags.join(", ")
     setBlog(response.data)
+    console.log(response.data)
   }
 
   useEffect(() => {
@@ -80,16 +84,10 @@ export default function EditBlog() {
                     placeholder="Article Title"
                   />
                 </fieldset>
-                <fieldset class="form-group">
-                  <textarea
-                    value={blog.content}
-                    onChange={(e) =>
-                      setBlog({ ...blog, content: e.target.value })
-                    }
-                    class="form-control"
-                    rows="8"
-                    placeholder="Write your article"></textarea>
-                </fieldset>
+                <Editor
+                  content={blog.content}
+                  handleChange={(e) => setBlog({ ...blog, content: e })}
+                />
                 <fieldset className="form-group">
                   <input
                     type="text"

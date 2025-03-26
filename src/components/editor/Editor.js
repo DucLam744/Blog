@@ -7,7 +7,6 @@ const Editor = ({ content, handleChange }) => {
   const quillRef = useRef(null)
 
   useEffect(() => {
-    // Khởi tạo Quill editor nếu chưa được khởi tạo
     if (editorRef.current && !quillRef.current) {
       quillRef.current = new Quill(editorRef.current, {
         theme: "snow",
@@ -23,13 +22,13 @@ const Editor = ({ content, handleChange }) => {
         },
       })
 
-      // Đăng ký sự kiện thay đổi nội dung
+      // Listen for content changes and pass the new content to the parent component
       quillRef.current.on("text-change", () => {
-        handleChange(quillRef.current.root.innerHTML) // Gửi nội dung đến handleChange
+        handleChange(quillRef.current.root.innerHTML)
       })
     }
 
-    // Cập nhật nội dung trong editor khi `content` prop thay đổi
+    // Check if content has changed before setting it in the editor
     if (quillRef.current && content !== quillRef.current.root.innerHTML) {
       quillRef.current.root.innerHTML = content
     }
