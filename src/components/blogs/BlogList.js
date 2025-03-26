@@ -44,13 +44,15 @@ function BlogList() {
     if (allBlogs.length > 0) {
       let filtered = allBlogs
       if (activeTag) {
-        filtered = allBlogs.filter((blog) => blog.tags && blog.tags.includes(activeTag))
+        filtered = allBlogs.filter(
+          (blog) => blog.tags && blog.tags.includes(activeTag)
+        )
       }
       setFilteredBlogs(filtered)
       const newTotalPages = Math.ceil(filtered.length / itemsPerPage)
       setTotalPages(newTotalPages)
       setCurrentPage(1)
-      const startIndex = 0;
+      const startIndex = 0
       const endIndex = itemsPerPage
       setDisplayedBlogs(filtered.slice(startIndex, endIndex))
     }
@@ -72,7 +74,9 @@ function BlogList() {
       const response = await axios.get(`${environment.apiUrl}/blogs`)
       const blogs = response.data
       setAllBlogs(blogs)
-      const filtered = activeTag ? blogs.filter((blog) => blog.tags && blog.tags.includes(activeTag)) : blogs
+      const filtered = activeTag
+        ? blogs.filter((blog) => blog.tags && blog.tags.includes(activeTag))
+        : blogs
       setFilteredBlogs(filtered)
       setTotalPages(Math.ceil(filtered.length / itemsPerPage))
       updateDisplayedBlogsFromFiltered(filtered, currentPage)
@@ -116,14 +120,18 @@ function BlogList() {
       let updatedLikes
 
       if (userLiked) {
-        updatedLikes = blog.likes.filter((id) => id !== Number.parseInt(currentUser.id))
+        updatedLikes = blog.likes.filter(
+          (id) => id !== Number.parseInt(currentUser.id)
+        )
       } else {
         updatedLikes = [...blog.likes, Number.parseInt(currentUser.id)]
       }
       await axios.patch(`${environment.apiUrl}/blogs/${blog.id}`, {
         likes: updatedLikes,
       })
-      const updatedBlogs = allBlogs.map((item) => (item.id === blog.id ? { ...item, likes: updatedLikes } : item))
+      const updatedBlogs = allBlogs.map((item) =>
+        item.id === blog.id ? { ...item, likes: updatedLikes } : item
+      )
       setAllBlogs(updatedBlogs)
     } catch (error) {
       console.error("Error updating like:", error)
@@ -192,20 +200,22 @@ function BlogList() {
                 <ul className="nav nav-pills outline-active">
                   <li className="nav-item">
                     <a
-                      className={`nav-link ${activeTab === "global" ? "active" : ""}`}
+                      className={`nav-link ${
+                        activeTab === "global" ? "active" : ""
+                      }`}
                       href=""
-                      onClick={handleGlobalFeedClick}
-                    >
+                      onClick={handleGlobalFeedClick}>
                       Global Feed
                     </a>
                   </li>
                   {activeTag && (
                     <li className="nav-item">
                       <a
-                        className={`nav-link ${activeTab === "tag" ? "active" : ""}`}
+                        className={`nav-link ${
+                          activeTab === "tag" ? "active" : ""
+                        }`}
                         href=""
-                        onClick={(e) => e.preventDefault()}
-                      >
+                        onClick={(e) => e.preventDefault()}>
                         <i className="ion-pound"></i> {activeTag}
                       </a>
                     </li>
@@ -216,41 +226,58 @@ function BlogList() {
               {loading ? (
                 <div className="article-preview">Loading...</div>
               ) : displayedBlogs.length === 0 ? (
-                <div className="article-preview">No articles are here... yet.</div>
+                <div className="article-preview">
+                  No articles are here... yet.
+                </div>
               ) : (
                 displayedBlogs.map((item, index) => {
-                  const hasLiked = currentUser && item.likes && item.likes.includes(Number.parseInt(currentUser.id))
+                  const hasLiked =
+                    currentUser &&
+                    item.likes &&
+                    item.likes.includes(Number.parseInt(currentUser.id))
 
                   return (
                     <div className="article-preview" key={index}>
                       <div className="article-meta">
                         <a href="/profile/eric-simons">
-                          <img src="http://i.imgur.com/Qr71crq.jpg" alt="Author" />
+                          <img
+                            src="http://i.imgur.com/Qr71crq.jpg"
+                            alt="Author"
+                          />
                         </a>
                         <div className="info">
                           <a href="/profile/eric-simons" className="author">
                             {getAuthorNameByAuthorId(item.authorId)}
                           </a>
-                          <span className="date">{item.createDate || "January 20th"}</span>
+                          <span className="date">
+                            {item.createDate || "January 20th"}
+                          </span>
                         </div>
                         <button
-                          className={`btn ${hasLiked ? "btn-primary" : "btn-outline-primary"} btn-sm pull-xs-right`}
+                          className={`btn ${
+                            hasLiked ? "btn-primary" : "btn-outline-primary"
+                          } btn-sm pull-xs-right`}
                           onClick={(e) => {
                             e.stopPropagation()
                             handleLike(item)
-                          }}
-                        >
-                          <i className="ion-heart"></i> {item.likes ? item.likes.length : 0}
+                          }}>
+                          <i className="ion-heart"></i>{" "}
+                          {item.likes ? item.likes.length : 0}
                         </button>
                       </div>
-                      <a onClick={() => toDetail(item.id)} className="preview-link" style={{ cursor: "pointer" }}>
+                      <a
+                        onClick={() => toDetail(item.id)}
+                        className="preview-link"
+                        style={{ cursor: "pointer" }}>
                         <h1>{item.title}</h1>
                         <p>{item.content}</p>
                         <span>Read more...</span>
                         <ul className="tag-list">
                           {item.tags &&
                             item.tags.map((tag, tagIndex) => (
-                              <li className="tag-default tag-pill tag-outline" key={tagIndex}>
+                              <li
+                                className="tag-default tag-pill tag-outline"
+                                key={tagIndex}>
                                 {tag}
                               </li>
                             ))}
@@ -264,12 +291,14 @@ function BlogList() {
               {totalPages > 1 && (
                 <nav>
                   <ul className="pagination">
-                    <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                    <li
+                      className={`page-item ${
+                        currentPage === 1 ? "disabled" : ""
+                      }`}>
                       <button
                         className="page-link"
                         onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                      >
+                        disabled={currentPage === 1}>
                         &laquo;
                       </button>
                     </li>
@@ -277,24 +306,33 @@ function BlogList() {
                     {renderPaginationNumbers().map((page, index) => (
                       <li
                         key={index}
-                        className={`page-item ${page === "..." ? "" : currentPage === page ? "active" : ""}`}
-                      >
+                        className={`page-item ${
+                          page === "..."
+                            ? ""
+                            : currentPage === page
+                            ? "active"
+                            : ""
+                        }`}>
                         {page === "..." ? (
                           <span className="page-link">...</span>
                         ) : (
-                          <button className="page-link" onClick={() => handlePageChange(page)}>
+                          <button
+                            className="page-link"
+                            onClick={() => handlePageChange(page)}>
                             {page}
                           </button>
                         )}
                       </li>
                     ))}
 
-                    <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                    <li
+                      className={`page-item ${
+                        currentPage === totalPages ? "disabled" : ""
+                      }`}>
                       <button
                         className="page-link"
                         onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                      >
+                        disabled={currentPage === totalPages}>
                         &raquo;
                       </button>
                     </li>
@@ -316,8 +354,7 @@ function BlogList() {
                       onClick={(e) => {
                         e.preventDefault()
                         handleTagClick(item)
-                      }}
-                    >
+                      }}>
                       {item}
                     </a>
                   ))}
@@ -332,4 +369,3 @@ function BlogList() {
 }
 
 export default BlogList
-

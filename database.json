@@ -8,10 +8,12 @@
       "followers": [
         "3",
         "8",
-        "4"
+        "4",
+        "1"
       ],
       "bookmarks": [
-        "5"
+        5,
+        "8bd5"
       ]
     },
     {
@@ -164,12 +166,6 @@
         "8",
         "11"
       ]
-    },
-    {
-      "id": "4ba5",
-      "username": "Mạnh Nguyễn Đức",
-      "email": "manhkspt2004@gmail.com",
-      "password": "123456"
     }
   ],
   "blogs": [
@@ -535,42 +531,55 @@
     },
     {
       "id": "f0fe",
-      "title": "Hướng dẫn sử dụng Git và GitHub",
-      "content": "Git là công cụ quan trọng giúp quản lý source code hiệu quả...",
-      "authorId": "4",
-      "likes": [],
-      "createDate": "2025-03-25",
-      "dislikes": [],
-      "comments": [],
+      "title": "dgfnfgh",
+      "content": "gdhnghn",
+      "createDate": "2025-03-25T17:46:30.756Z",
       "tags": [
-        "Git",
-        "Version Control",
-        "Collaboration"
+        "4r6h6ht",
+        "drydtfyunjt"
       ]
     },
     {
-      "id": "415f",
-      "title": "Hướng dẫn sử dụng Git và GitHub",
-      "content": "Git là công cụ quan trọng giúp quản lý source code hiệu quả...",
-      "authorId": "4",
-      "likes": [],
-      "createDate": "2025-03-25",
-      "dislikes": [],
-      "comments": [],
+      "id": "bde4",
+      "title": "manh",
+      "content": "sadsad",
       "tags": [
-        "Git",
-        "Version Control",
-        "Collaboration"
-      ]
-    },
-    {
-      "id": "cafb",
-      "title": "adssad",
-      "content": "ádsad",
-      "tags": [
-        "dsad,ádasd"
+        "manh,mna"
       ],
-      "createDate": "2025-03-26T03:59:10.140Z"
+      "createDate": "2025-03-26",
+      "authorId": "1",
+      "likes": [],
+      "dislikes": [],
+      "comments": []
+    },
+    {
+      "id": "8bd5",
+      "title": "Bài viết hay",
+      "content": "sấd",
+      "tags": [
+        "Giáo dục",
+        "quốc phòng"
+      ],
+      "createDate": "2025-03-26",
+      "authorId": "1",
+      "likes": [
+        "1"
+      ],
+      "dislikes": [],
+      "comments": [
+        {
+          "id": "1742962013977",
+          "userId": "1",
+          "content": "đasa",
+          "replies": []
+        },
+        {
+          "id": "1742962015779",
+          "userId": "1",
+          "content": "sadsad",
+          "replies": []
+        }
+      ]
     }
   ]
 }
