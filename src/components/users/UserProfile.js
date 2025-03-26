@@ -114,9 +114,16 @@ export default function UserProfile() {
                     </a>
                     <span className="date">{blog.createDate}</span>
                   </div>
-                  <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                    <i className="ion-heart"></i> 29
-                  </button>
+                  <div>
+                    {account.id == state.user.id && (
+                      <button className="btn btn-outline-primary btn-sm pull-xs-right">
+                        <i className="ion-compose"></i> Edit
+                      </button>
+                    )}
+                    <button className="btn btn-outline-primary btn-sm pull-xs-right">
+                      <i className="ion-heart"></i> 29
+                    </button>
+                  </div>
                 </div>
                 <a
                   href="/article/how-to-buil-webapps-that-scale"
