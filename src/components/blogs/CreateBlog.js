@@ -84,7 +84,7 @@ export default function CreateBlog() {
                     }
                     class="form-control"
                     rows="8"
-                    placeholder="Write your article (in markdown)"></textarea>
+                    placeholder="Write your article"></textarea>
                 </fieldset>
                 <fieldset className="form-group">
                   <input
