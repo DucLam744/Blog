@@ -1,187 +1,189 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { environment } from "../../shared/constants/StorageKey.js"
-import { useNavigate, Link } from "react-router-dom"
+"use client";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { environment } from "../../shared/constants/StorageKey.js";
+import { useNavigate, Link } from "react-router-dom";
 
 function BlogList() {
-  const [allBlogs, setAllBlogs] = useState([])
-  const [displayedBlogs, setDisplayedBlogs] = useState([])
-  const [tags, setTags] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
-  const [loading, setLoading] = useState(false)
-  const [authors, setAuthors] = useState({})
-  const [users, setUsers] = useState([])
-  const [currentUser, setCurrentUser] = useState(null)
-  const [activeTag, setActiveTag] = useState(null)
-  const [activeTab, setActiveTab] = useState("global")
-  const [filteredBlogs, setFilteredBlogs] = useState([])
-  const itemsPerPage = 5
-  const navigate = useNavigate()
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [displayedBlogs, setDisplayedBlogs] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [authors, setAuthors] = useState({});
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [activeTag, setActiveTag] = useState(null);
+  const [activeTab, setActiveTab] = useState("global");
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const itemsPerPage = 5;
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
-      const userDataString = localStorage.getItem("user_current")
+      const userDataString = localStorage.getItem("user_current");
       if (userDataString) {
-        const userData = JSON.parse(userDataString)
-        setCurrentUser(userData)
+        const userData = JSON.parse(userDataString);
+        setCurrentUser(userData);
       }
     } catch (error) {
-      console.error("Error parsing user data from localStorage:", error)
+      console.error("Error parsing user data from localStorage:", error);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    fetchAllBlogs()
+    fetchAllBlogs();
     axios.get(`${environment.apiUrl}/users`).then((response) => {
-      setUsers(response.data)
-    })
-  }, [])
+      setUsers(response.data);
+    });
+  }, []);
 
   useEffect(() => {
     if (allBlogs.length > 0) {
-      let filtered = allBlogs
+      let filtered = allBlogs;
       if (activeTag) {
         filtered = allBlogs.filter(
           (blog) => blog.tags && blog.tags.includes(activeTag)
-        )
+        );
       }
-      setFilteredBlogs(filtered)
-      const newTotalPages = Math.ceil(filtered.length / itemsPerPage)
-      setTotalPages(newTotalPages)
-      setCurrentPage(1)
-      const startIndex = 0
-      const endIndex = itemsPerPage
-      setDisplayedBlogs(filtered.slice(startIndex, endIndex))
+      setFilteredBlogs(filtered);
+      const newTotalPages = Math.ceil(filtered.length / itemsPerPage);
+      setTotalPages(newTotalPages);
+      setCurrentPage(1);
+      const startIndex = 0;
+      const endIndex = itemsPerPage;
+      setDisplayedBlogs(filtered.slice(startIndex, endIndex));
     }
-  }, [allBlogs, activeTag, itemsPerPage])
+  }, [allBlogs, activeTag, itemsPerPage]);
 
   useEffect(() => {
     if (filteredBlogs.length > 0) {
-      updateDisplayedBlogsFromFiltered(filteredBlogs, currentPage)
+      updateDisplayedBlogsFromFiltered(filteredBlogs, currentPage);
     }
-  }, [currentPage, filteredBlogs])
+  }, [currentPage, filteredBlogs]);
 
   function toDetail(id) {
-    navigate(`/blogs/${id}`)
+    navigate(`/blogs/${id}`);
   }
 
   const fetchAllBlogs = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.get(`${environment.apiUrl}/blogs`)
-      const blogs = response.data
-      setAllBlogs(blogs)
+      const response = await axios.get(`${environment.apiUrl}/blogs`);
+      const blogs = response.data;
+      setAllBlogs(blogs);
       const filtered = activeTag
         ? blogs.filter((blog) => blog.tags && blog.tags.includes(activeTag))
-        : blogs
-      setFilteredBlogs(filtered)
-      setTotalPages(Math.ceil(filtered.length / itemsPerPage))
-      updateDisplayedBlogsFromFiltered(filtered, currentPage)
-      const tagsRes = [...new Set(blogs.flatMap((blog) => blog.tags || []))]
-      setTags(tagsRes)
+        : blogs;
+      setFilteredBlogs(filtered);
+      setTotalPages(Math.ceil(filtered.length / itemsPerPage));
+      updateDisplayedBlogsFromFiltered(filtered, currentPage);
+      const tagsRes = [...new Set(blogs.flatMap((blog) => blog.tags || []))];
+      setTags(tagsRes);
     } catch (error) {
-      console.error("Error fetching blogs:", error)
+      console.error("Error fetching blogs:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   function getAuthorNameByAuthorId(authorId) {
-    const author = users.find((user) => user.id == authorId)
-    return author ? author.username : "Unknown Author"
+    const author = users.find((user) => String(user.id) === String(authorId));
+    return author ? author.username : "Unknown Author";
   }
 
   const updateDisplayedBlogsFromFiltered = (filtered, page) => {
-    const startIndex = (page - 1) * itemsPerPage
-    const endIndex = startIndex + itemsPerPage
-    setDisplayedBlogs(filtered.slice(startIndex, endIndex))
-  }
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setDisplayedBlogs(filtered.slice(startIndex, endIndex));
+  };
 
   const handlePageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
-      setCurrentPage(newPage)
-      const startIndex = (newPage - 1) * itemsPerPage
-      const endIndex = startIndex + itemsPerPage
-      setDisplayedBlogs(filteredBlogs.slice(startIndex, endIndex))
-      window.scrollTo(0, 0)
+      setCurrentPage(newPage);
+      const startIndex = (newPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      setDisplayedBlogs(filteredBlogs.slice(startIndex, endIndex));
+      window.scrollTo(0, 0);
     }
-  }
+  };
 
   const handleLike = async (blog) => {
     if (!currentUser) {
-      alert("Please login to like posts")
-      return
+      alert("Please login to like posts");
+      return;
     }
     try {
       const userLiked = blog.likes
         .map((like) => String(like))
-        .includes(String(currentUser.id))
-      let updatedLikes
+        .includes(String(currentUser.id));
+      let updatedLikes;
 
       if (userLiked) {
         updatedLikes = blog.likes.filter(
-          (id) => id !== Number.parseInt(currentUser.id)
-        )
+          (id) => String(id) !== String(currentUser.id)
+        );
       } else {
-        updatedLikes = [...blog.likes, Number.parseInt(currentUser.id)]
+        updatedLikes = [...blog.likes, currentUser.id];
       }
       await axios.patch(`${environment.apiUrl}/blogs/${blog.id}`, {
         likes: updatedLikes,
-      })
+      });
       const updatedBlogs = allBlogs.map((item) =>
         item.id === blog.id ? { ...item, likes: updatedLikes } : item
-      )
-      setAllBlogs(updatedBlogs)
+      );
+      setAllBlogs(updatedBlogs);
     } catch (error) {
-      console.error("Error updating like:", error)
+      console.error("Error updating like:", error);
     }
-  }
+  };
 
   const handleTagClick = (tag) => {
-    setActiveTag(tag)
-    setActiveTab("tag")
-    setCurrentPage(1)
-  }
+    setActiveTag(tag);
+    setActiveTab("tag");
+    setCurrentPage(1);
+  };
 
   const handleGlobalFeedClick = (e) => {
-    e.preventDefault()
-    setActiveTag(null)
-    setActiveTab("global")
-    setCurrentPage(1)
-  }
+    e.preventDefault();
+    setActiveTag(null);
+    setActiveTab("global");
+    setCurrentPage(1);
+  };
 
   const renderPaginationNumbers = () => {
-    const pages = []
-    const maxVisiblePages = 5
+    const pages = [];
+    const maxVisiblePages = 5;
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
+        pages.push(i);
       }
     } else {
-      pages.push(1)
-      let startPage = Math.max(2, currentPage - 1)
-      let endPage = Math.min(totalPages - 1, currentPage + 1)
+      pages.push(1);
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPages - 1, currentPage + 1);
       if (currentPage <= 3) {
-        endPage = Math.min(maxVisiblePages - 1, totalPages - 1)
+        endPage = Math.min(maxVisiblePages - 1, totalPages - 1);
       }
       if (currentPage >= totalPages - 2) {
-        startPage = Math.max(2, totalPages - maxVisiblePages + 2)
+        startPage = Math.max(2, totalPages - maxVisiblePages + 2);
       }
       if (startPage > 2) {
-        pages.push("...")
+        pages.push("...");
       }
       for (let i = startPage; i <= endPage; i++) {
-        pages.push(i)
+        pages.push(i);
       }
       if (endPage < totalPages - 1) {
-        pages.push("...")
+        pages.push("...");
       }
-      pages.push(totalPages)
+      pages.push(totalPages);
     }
 
-    return pages
-  }
+    return pages;
+  };
 
   return (
     <div>
@@ -204,7 +206,8 @@ function BlogList() {
                         activeTab === "global" ? "active" : ""
                       }`}
                       href=""
-                      onClick={handleGlobalFeedClick}>
+                      onClick={handleGlobalFeedClick}
+                    >
                       Global Feed
                     </a>
                   </li>
@@ -215,7 +218,8 @@ function BlogList() {
                           activeTab === "tag" ? "active" : ""
                         }`}
                         href=""
-                        onClick={(e) => e.preventDefault()}>
+                        onClick={(e) => e.preventDefault()}
+                      >
                         <i className="ion-pound"></i> {activeTag}
                       </a>
                     </li>
@@ -234,7 +238,9 @@ function BlogList() {
                   const hasLiked =
                     currentUser &&
                     item.likes &&
-                    item.likes.includes(Number.parseInt(currentUser.id))
+                    item.likes
+                      .map((id) => String(id))
+                      .includes(String(currentUser.id));
 
                   return (
                     <div className="article-preview" key={index}>
@@ -248,7 +254,8 @@ function BlogList() {
                         <div className="info">
                           <Link
                             to={`/profile/${item.authorId}`}
-                            className="author">
+                            className="author"
+                          >
                             {getAuthorNameByAuthorId(item.authorId)}
                           </Link>
                           <span className="date">
@@ -260,9 +267,10 @@ function BlogList() {
                             hasLiked ? "btn-primary" : "btn-outline-primary"
                           } btn-sm pull-xs-right`}
                           onClick={(e) => {
-                            e.stopPropagation()
-                            handleLike(item)
-                          }}>
+                            e.stopPropagation();
+                            handleLike(item);
+                          }}
+                        >
                           <i className="ion-heart"></i>{" "}
                           {item.likes ? item.likes.length : 0}
                         </button>
@@ -270,7 +278,8 @@ function BlogList() {
                       <a
                         onClick={() => toDetail(item.id)}
                         className="preview-link"
-                        style={{ cursor: "pointer" }}>
+                        style={{ cursor: "pointer" }}
+                      >
                         <h1>{item.title}</h1>
                         <p>{item.content}</p>
                         <span>Read more...</span>
@@ -279,14 +288,15 @@ function BlogList() {
                             item.tags.map((tag, tagIndex) => (
                               <li
                                 className="tag-default tag-pill tag-outline"
-                                key={tagIndex}>
+                                key={tagIndex}
+                              >
                                 {tag}
                               </li>
                             ))}
                         </ul>
                       </a>
                     </div>
-                  )
+                  );
                 })
               )}
 
@@ -296,11 +306,13 @@ function BlogList() {
                     <li
                       className={`page-item ${
                         currentPage === 1 ? "disabled" : ""
-                      }`}>
+                      }`}
+                    >
                       <button
                         className="page-link"
                         onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>
+                        disabled={currentPage === 1}
+                      >
                         &laquo;
                       </button>
                     </li>
@@ -314,13 +326,15 @@ function BlogList() {
                             : currentPage === page
                             ? "active"
                             : ""
-                        }`}>
+                        }`}
+                      >
                         {page === "..." ? (
                           <span className="page-link">...</span>
                         ) : (
                           <button
                             className="page-link"
-                            onClick={() => handlePageChange(page)}>
+                            onClick={() => handlePageChange(page)}
+                          >
                             {page}
                           </button>
                         )}
@@ -330,11 +344,13 @@ function BlogList() {
                     <li
                       className={`page-item ${
                         currentPage === totalPages ? "disabled" : ""
-                      }`}>
+                      }`}
+                    >
                       <button
                         className="page-link"
                         onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}>
+                        disabled={currentPage === totalPages}
+                      >
                         &raquo;
                       </button>
                     </li>
@@ -354,9 +370,10 @@ function BlogList() {
                       className="tag-pill tag-default"
                       key={index}
                       onClick={(e) => {
-                        e.preventDefault()
-                        handleTagClick(item)
-                      }}>
+                        e.preventDefault();
+                        handleTagClick(item);
+                      }}
+                    >
                       {item}
                     </a>
                   ))}
@@ -367,7 +384,7 @@ function BlogList() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default BlogList
+export default BlogList;
