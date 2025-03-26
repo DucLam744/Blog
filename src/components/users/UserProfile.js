@@ -65,7 +65,7 @@ export default function UserProfile() {
             <div className="col-xs-12 col-md-10 offset-md-1">
               <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
               <h4>{account && account.username}</h4>
-              {account && state.user.id == account.id && (
+              {account && state.user && state.user.id == account.id && (
                 <button
                   className="btn btn-sm btn-outline-secondary action-btn"
                   onClick={() => navigate(`/edit-profile/${state.user.id}`)}>
@@ -104,11 +104,6 @@ export default function UserProfile() {
                     Articles
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="">
-                    Favorited Articles
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -119,9 +114,9 @@ export default function UserProfile() {
                     <img src="http://i.imgur.com/Qr71crq.jpg" />
                   </a>
                   <div className="info">
-                    <a href="/profile/eric-simons" className="author">
+                    <Link to={`/profile/${blog.id}`} className="author">
                       {account && account.username}
-                    </a>
+                    </Link>
                     <span className="date">{blog.createDate}</span>
                   </div>
                   <div>
@@ -132,8 +127,11 @@ export default function UserProfile() {
                         <i className="ion-compose"></i> Edit
                       </button>
                     )}
-                    <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                      <i className="ion-heart"></i> 29
+                    <button
+                      className="btn btn-secondary btn-sm pull-xs-right"
+                      disabled>
+                      <i className="ion-heart"></i>
+                      {blog.likes.length}
                     </button>
                   </div>
                 </div>

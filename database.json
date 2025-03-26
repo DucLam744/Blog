@@ -172,12 +172,16 @@
       ]
     },
     {
-      "id": "63e6",
-      "username": "user10",
-      "email": "user10@gmail.com",
-      "password": "1234567",
-      "followers": [],
-      "bookmarks": []
+      "id": "cab1",
+      "username": "Le Nhat Minh",
+      "email": "minh@gmail.com",
+      "password": "123456",
+      "followers": [
+        "cab1"
+      ],
+      "bookmarks": [
+        "1"
+      ]
     }
   ],
   "blogs": [
@@ -545,70 +549,18 @@
       ]
     },
     {
-      "id": "f0fe",
-      "title": "dgfnfgh",
-      "content": "gdhnghn",
-      "createDate": "2025-03-25T17:46:30.756Z",
+      "id": "5a71",
+      "title": "Minh",
+      "content": "<h1>srtmnihmnihnh</h1><h2>rtrtgrtg<span class=\"ql-font-serif\"><span class=\"ql-cursor\">﻿﻿</span></span></h2><p><br></p>",
       "tags": [
-        "4r6h6ht",
-        "drydtfyunjt",
-        "bb"
-      ]
-    },
-    {
-      "id": "bde4",
-      "title": "manh",
-      "content": "sadsad",
-      "tags": [
-        "manh,mna"
+        "minh",
+        "minh1"
       ],
       "createDate": "2025-03-26",
-      "authorId": "1",
-      "likes": [],
-      "dislikes": [],
-      "comments": []
-    },
-    {
-      "id": "8bd5",
-      "title": "Bài viết hay",
-      "content": "sấd",
-      "tags": [
-        "Giáo dục",
-        "quốc phòng"
-      ],
-      "createDate": "2025-03-26",
-      "authorId": "1",
+      "authorId": "cab1",
       "likes": [
-        "1"
+        "cab1"
       ],
-      "dislikes": [],
-      "comments": [
-        {
-          "id": "1742962013977",
-          "userId": "1",
-          "content": "đasa",
-          "replies": []
-        },
-        {
-          "id": "1742962015779",
-          "userId": "1",
-          "content": "sadsad",
-          "replies": []
-        }
-      ]
-    },
-    {
-      "id": "257b",
-      "title": "hiiiiiiiiiiwetgwrtg",
-      "content": "huuuuuuuuuuuretgrwtg",
-      "tags": [
-        "huu",
-        "hihih",
-        "huhuhuh"
-      ],
-      "createDate": "2025-03-26",
-      "authorId": "63e6",
-      "likes": [],
       "dislikes": [],
       "comments": []
     },

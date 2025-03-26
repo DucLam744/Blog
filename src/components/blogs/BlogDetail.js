@@ -445,7 +445,7 @@ function BlogDetail() {
       <div className="container page">
         <div className="row article-content">
           <div className="col-md-12">
-            <p>{blog.content}</p>
+            <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
             <ul className="tag-list">
               {blog.tags.map((tag, index) => (
                 <li key={index} className="tag-default tag-pill tag-outline">

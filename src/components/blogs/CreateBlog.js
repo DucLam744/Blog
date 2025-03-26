@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js"
+import Editor from "../editor/Editor.js"
 
 export default function CreateBlog() {
   const [blog, setBlog] = useState({
@@ -76,7 +77,7 @@ export default function CreateBlog() {
                     placeholder="Article Title"
                   />
                 </fieldset>
-                <fieldset class="form-group">
+                {/* <fieldset class="form-group">
                   <textarea
                     value={blog.content}
                     onChange={(e) =>
@@ -85,7 +86,11 @@ export default function CreateBlog() {
                     class="form-control"
                     rows="8"
                     placeholder="Write your article"></textarea>
-                </fieldset>
+                </fieldset> */}
+                <Editor
+                  content={blog.content}
+                  handleChange={(e) => setBlog({ ...blog, content: e })}
+                />
                 <fieldset className="form-group">
                   <input
                     type="text"
