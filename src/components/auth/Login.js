@@ -1,55 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import axios from "axios"
-import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js";
-import {useAuth} from "../../shared/context/AuthContext.js"
-import { useNavigate } from "react-router-dom";
+import { environment, USER_CURRENT } from "../../shared/constants/StorageKey.js"
+import { useAuth } from "../../shared/context/AuthContext.js"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
   const [account, setAccount] = useState({
     email: "",
     password: "",
-  });
+  })
 
-  const [users, setUsers] = [[]];
-    const [error, setError] = useState([])
-    const {state, setState} = useAuth()
-    const navigate = useNavigate();
+  const [error, setError] = useState([])
+  const { state, setState } = useAuth()
+  const navigate = useNavigate()
 
-    useEffect(() => {
+  useEffect(() => {})
 
-    })
-
-    
-    const handleLogin = async () => {
-        let errors = []
-        let isValid = true
-        if (!account.email.trim()) {
-            errors = [...errors, "email is required"]
-            isValid = false
-        }
-        if (!account.password.trim()) {
-            errors = [...errors, "Password is required"]
-            isValid = false
-        }
-        if (errors.length !== 0) {
-            setError(errors)
-        }
-        
-        if (isValid) {
-          
-            const response = await axios.get(`${environment.apiUrl}/users`)
-            const existAccount = response.data.find(acc => 
-                (acc.email === account.email && acc.password === account.password)
-            )
-            if (existAccount) {
-                localStorage.setItem(USER_CURRENT, JSON.stringify(existAccount))
-                setState({...state, user: existAccount.email, isAuthenticated: true})
-                navigate("/")
-            } else {
-                setError(...error, "Email/Password is incorrect")
-            }
-        }
+  const handleLogin = async () => {
+    setError([])
+    let errors = []
+    let isValid = true
+    if (!account.email.trim()) {
+      errors = [...errors, "email is required"]
+      isValid = false
     }
+    if (!account.password.trim()) {
+      errors = [...errors, "Password is required"]
+      isValid = false
+    }
+    if (errors.length !== 0) {
+      setError(errors)
+    }
+
+    if (isValid) {
+      const response = await axios.get(`${environment.apiUrl}/users`)
+      const existAccount = response.data.find(
+        (acc) =>
+          acc.email === account.email && acc.password === account.password
+      )
+      if (existAccount) {
+        localStorage.setItem(USER_CURRENT, JSON.stringify(existAccount))
+        setState({ ...state, user: existAccount.email, isAuthenticated: true })
+        navigate("/")
+      } else {
+        setError((prevErrors) => [...prevErrors, "Email/Password is incorrect"])
+      }
+    }
+  }
   return (
     <div class="auth-page">
       <div class="container page">
@@ -89,7 +86,9 @@ export default function Login() {
                   placeholder="Password"
                 />
               </fieldset>
-              <button class="btn btn-lg btn-primary pull-xs-right" onClick={handleLogin}>
+              <button
+                class="btn btn-lg btn-primary pull-xs-right"
+                onClick={handleLogin}>
                 Sign in
               </button>
             </div>
@@ -97,5 +96,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
