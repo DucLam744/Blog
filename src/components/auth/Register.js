@@ -8,6 +8,8 @@ function Register() {
     username: "",
     email: "",
     password: "",
+    followers: [],
+    bookmarks: [],
   });
 
   const [isLoading, setIsLoading] = useState(false);

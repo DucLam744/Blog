@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { environment } from "../../shared/constants/StorageKey.js";
 
@@ -101,15 +101,14 @@ const Comment = ({
           {commentUser.username}
         </a>
         <span className="date-posted">{formatDate(blogDate)}</span>
-        {currentUser &&
-          parseInt(currentUser.id) === parseInt(comment.userId) && (
-            <span className="mod-options">
-              <i
-                className="ion-trash-a"
-                onClick={() => onDeleteComment && onDeleteComment(comment.id)}
-              ></i>
-            </span>
-          )}
+        {currentUser && currentUser.id === comment.userId && (
+          <span className="mod-options">
+            <i
+              className="ion-trash-a"
+              onClick={() => onDeleteComment && onDeleteComment(comment.id)}
+            ></i>
+          </span>
+        )}
       </div>
 
       {/* Comment Replies */}
@@ -175,7 +174,7 @@ function BlogDetail() {
         const userData = JSON.parse(userDataString);
         setCurrentUser({
           ...userData,
-          image: "http://i.imgur.com/Qr71crq.jpg", 
+          image: "http://i.imgur.com/Qr71crq.jpg",
         });
       }
     } catch (error) {
@@ -217,8 +216,8 @@ function BlogDetail() {
     try {
       // Create new comment
       const newComment = {
-        id: Date.now(), 
-        userId: parseInt(currentUser.id),
+        id: String(Date.now()),
+        userId: currentUser.id,
         content: commentText,
         replies: [],
       };
@@ -257,20 +256,18 @@ function BlogDetail() {
 
   const handleLike = async () => {
     if (!currentUser) {
-        alert("Please login to like posts");
+      alert("Please login to like posts");
       return;
     }
 
     try {
-      const userLiked = blog.likes.includes(parseInt(currentUser.id));
+      const userLiked = blog.likes.includes(currentUser.id);
       let updatedLikes;
 
       if (userLiked) {
-        updatedLikes = blog.likes.filter(
-          (id) => id !== parseInt(currentUser.id)
-        );
+        updatedLikes = blog.likes.filter((likeId) => likeId !== currentUser.id);
       } else {
-        updatedLikes = [...blog.likes, parseInt(currentUser.id)];
+        updatedLikes = [...blog.likes, currentUser.id];
       }
 
       await axios.patch(`${environment.apiUrl}/blogs/${id}`, {
@@ -295,15 +292,15 @@ function BlogDetail() {
     if (!author) return;
 
     try {
-      const isFollowing = author.followers.includes(parseInt(currentUser.id));
+      const isFollowing = author.followers.includes(currentUser.id);
       let updatedFollowers;
 
       if (isFollowing) {
         updatedFollowers = author.followers.filter(
-          (id) => id !== parseInt(currentUser.id)
+          (followerId) => followerId !== currentUser.id
         );
       } else {
-        updatedFollowers = [...author.followers, parseInt(currentUser.id)];
+        updatedFollowers = [...author.followers, currentUser.id];
       }
 
       await axios.patch(`${environment.apiUrl}/users/${author.id}`, {
@@ -326,15 +323,15 @@ function BlogDetail() {
     }
 
     try {
-      const hasBookmarked = currentUser.bookmarks.includes(parseInt(id));
+      const hasBookmarked = currentUser.bookmarks.includes(id);
       let updatedBookmarks;
 
       if (hasBookmarked) {
         updatedBookmarks = currentUser.bookmarks.filter(
-          (bookmarkId) => bookmarkId !== parseInt(id)
+          (bookmarkId) => bookmarkId !== id
         );
       } else {
-        updatedBookmarks = [...currentUser.bookmarks, parseInt(id)];
+        updatedBookmarks = [...currentUser.bookmarks, id];
       }
 
       await axios.patch(`${environment.apiUrl}/users/${currentUser.id}`, {
@@ -358,7 +355,6 @@ function BlogDetail() {
   };
 
   const findUser = async (userId) => {
-    // Check cache first
     if (userCache[userId]) {
       return userCache[userId];
     }
@@ -395,13 +391,10 @@ function BlogDetail() {
     return <div className="container">Blog not found</div>;
   }
 
-  const isFollowing =
-    currentUser && author.followers.includes(parseInt(currentUser.id));
-  const hasLiked = currentUser && blog.likes.includes(parseInt(currentUser.id));
+  const isFollowing = currentUser && author.followers.includes(currentUser.id);
+  const hasLiked = currentUser && blog.likes.includes(currentUser.id);
   const hasBookmarked =
-    currentUser &&
-    currentUser.bookmarks &&
-    currentUser.bookmarks.includes(parseInt(id));
+    currentUser && currentUser.bookmarks && currentUser.bookmarks.includes(id);
 
   return (
     <div className="article-page">
