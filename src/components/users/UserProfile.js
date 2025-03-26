@@ -35,11 +35,14 @@ export default function UserProfile() {
       return
     }
     state &&
-      (await axios.patch(`${environment.apiUrl}/users/${userId}`, {
-        followers: [...account.followers, state.user.id],
-      }))
-    getCurrentAccount()
-    getCurrentBlogs()
+      (await axios
+        .patch(`${environment.apiUrl}/users/${userId}`, {
+          followers: [...account.followers, state.user.id],
+        })
+        .then(() => {
+          getCurrentAccount()
+          getCurrentBlogs()
+        }))
   }
 
   const handleUnfollow = async () => {

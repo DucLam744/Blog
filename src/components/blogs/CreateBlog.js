@@ -20,7 +20,7 @@ export default function CreateBlog() {
       canCreate = false
     }
     if (!blog.content) {
-      tempErr = [...tempErr, "Title is required"]
+      tempErr = [...tempErr, "Content is required"]
       canCreate = false
     }
     if (!blog.tags) {
@@ -47,8 +47,9 @@ export default function CreateBlog() {
         .then(() => {
           setBlog({ title: "", content: "", tags: "" })
           setSuccess("Create blog successfully!")
+          setError([])
         })
-        .catch((err) => setError(...error, err))
+        .catch((err) => setError([...error, err])) // Sửa lại phần setError để đảm bảo cập nhật đúng
     }
   }
 
@@ -77,19 +78,9 @@ export default function CreateBlog() {
                     placeholder="Article Title"
                   />
                 </fieldset>
-                {/* <fieldset class="form-group">
-                  <textarea
-                    value={blog.content}
-                    onChange={(e) =>
-                      setBlog({ ...blog, content: e.target.value })
-                    }
-                    class="form-control"
-                    rows="8"
-                    placeholder="Write your article"></textarea>
-                </fieldset> */}
                 <Editor
                   content={blog.content}
-                  handleChange={(e) => setBlog({ ...blog, content: e })}
+                  handleChange={(content) => setBlog({ ...blog, content })} // Giữ nguyên title và tags khi cập nhật content
                 />
                 <fieldset className="form-group">
                   <input
