@@ -1,27 +1,46 @@
-// import React, { useState } from "react"
-// // import { Editor } from "@tinymce/tinymce-react";
+import React, { useEffect, useRef } from "react"
+import Quill from "quill"
+import "quill/dist/quill.snow.css" // Import Quill's snow theme CSS
 
-// const BlogEditor = ({ value, onChange }) => {
-//   const handleEditorChange = (content) => {
-//     onChange(content)
-//   }
+const Editor = ({ content, handleChange }) => {
+  const editorRef = useRef(null)
+  const quillRef = useRef(null)
 
-//   return (
-//     <div>
-//       <h2>Write your blog post</h2>
-//       <Editor
-//         value={value}
-//         onEditorChange={handleEditorChange}
-//         init={{
-//           height: 500,
-//           menubar: false,
-//           plugins: ["link", "lists", "image"],
-//           toolbar:
-//             "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image",
-//         }}
-//       />
-//     </div>
-//   )
-// }
+  useEffect(() => {
+    // Khởi tạo Quill editor nếu chưa được khởi tạo
+    if (editorRef.current && !quillRef.current) {
+      quillRef.current = new Quill(editorRef.current, {
+        theme: "snow",
+        modules: {
+          toolbar: [
+            [{ header: "1" }, { header: "2" }, { font: [] }],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["bold", "italic", "underline"],
+            ["link", "image"],
+            [{ align: [] }],
+            ["clean"],
+          ],
+        },
+      })
 
-// export default BlogEditor
+      // Đăng ký sự kiện thay đổi nội dung
+      quillRef.current.on("text-change", () => {
+        handleChange(quillRef.current.root.innerHTML) // Gửi nội dung đến handleChange
+      })
+    }
+
+    // Cập nhật nội dung trong editor khi `content` prop thay đổi
+    if (quillRef.current && content !== quillRef.current.root.innerHTML) {
+      quillRef.current.root.innerHTML = content
+    }
+  }, [content, handleChange])
+
+  return (
+    <div>
+      <div ref={editorRef} style={{ height: "300px" }}></div>{" "}
+      {/* Quill editor */}
+    </div>
+  )
+}
+
+export default Editor
