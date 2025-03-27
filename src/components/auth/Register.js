@@ -8,6 +8,7 @@ function Register() {
     username: "",
     email: "",
     password: "",
+    role: "user",
     followers: [],
     bookmarks: [],
   });
