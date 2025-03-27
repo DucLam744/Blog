@@ -22,7 +22,7 @@ export default function EditBlog() {
       canCreate = false
     }
     if (!blog.content) {
-      tempErr = [...tempErr, "Title is required"]
+      tempErr = [...tempErr, "Content is required"]
       canCreate = false
     }
     if (!blog.tags) {
@@ -52,7 +52,6 @@ export default function EditBlog() {
     const response = await axios.get(`${environment.apiUrl}/blogs/${blogId}`)
     response.data.tags = response.data.tags.join(", ")
     setBlog(response.data)
-    console.log(response.data)
   }
 
   useEffect(() => {
